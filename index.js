@@ -45,10 +45,11 @@ app.use("/uploads", express.static("uploads"));
 //routes
 app.use("/api/auth", require("./routes/Auth"));
 app.use("/api/students", require("./routes/Student_route"));
+app.use("/api/contact", require("./routes/Contact_route"));
 
-// app.get('/',(req,res)=>{
-//   res.send('Hello World!')
-// })
+app.get('/',(req,res)=>{
+  res.send('Hello World!')
+})
 
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on port ${PORT}`);
