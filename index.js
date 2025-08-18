@@ -14,11 +14,21 @@ app.use(express.urlencoded({ extended: false }));
 
 
 const authRoute = require("./routes/Auth")
+const studentRoute = require("./routes/Student_route")
+const profileRoute = require("./routes/Profile_route")
+const teacherRoute = require("./routes/Teacher_route")
+const getAllDatasRoute = require("./routes/GetAllDatas")
+const userRoute = require("./routes/User_route")
 
 
 //routes
 app.use("/api/auth", authRoute);
-app.use("/api/students",require("./routes/Student_route"));
+app.use("/api/students",studentRoute);
+app.use("/api/profile",profileRoute)
+app.use("/api/teachers",teacherRoute)
+app.use("/api/all",getAllDatasRoute)
+app.use("/api/users",userRoute)
+
 app.use("/api/contact", require("./routes/Contact_route"));
 
 app.get("/", (req, res) => {

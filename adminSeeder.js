@@ -20,3 +20,6 @@ const adminSeeder = async()=>{
 }
 
 module.exports = adminSeeder
+
+
+

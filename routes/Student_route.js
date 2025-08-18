@@ -1,7 +1,7 @@
   const express = require("express");
 const FetchUser = require("../middleware/FetchUser");
 const permitTo = require("../middleware/permitTo");
-const { addStudent, getAllStudents, updateStudent, deleteStudent, getSingleStudent } = require("../controller/student.controller");
+const { addStudent, getAllStudents, deleteStudent, getSingleStudent, editStudent } = require("../controller/student.controller");
   const router = express.Router();
   
   const upload = require("../middleware/multerConfig")
@@ -12,7 +12,7 @@ const { addStudent, getAllStudents, updateStudent, deleteStudent, getSingleStude
 
 
 router.route("/:id")
-.patch(FetchUser,permitTo("admin"),updateStudent)
+.patch(FetchUser,permitTo("admin"),upload.single("image"),editStudent)
 .delete(FetchUser,permitTo("admin"),deleteStudent)
 .get(getSingleStudent)
 
