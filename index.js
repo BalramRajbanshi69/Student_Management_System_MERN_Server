@@ -9,7 +9,7 @@ dbConnect();
 
 // middleware
 app.use(cors({
-  origin:["https://sms-mern.vercel.app","https://student-management-system-admin.vercel.app","http://localhost:5173"],
+  origin:["https://sms-mern.vercel.app","https://student-management-system-admincls.vercel.app","http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true
 }));
