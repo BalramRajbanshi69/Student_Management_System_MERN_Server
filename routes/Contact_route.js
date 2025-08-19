@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const Contact = require('../models/Contact_model')
+const Contact = require('../models/Contact_model');
+const { sendEmail } = require("../services/sendEmail");
+const FetchUser = require("../middleware/FetchUser");
 
 // Contact form submission route with validation
 router.post(
   "/",
+  FetchUser,
   [
     body("name").trim().isLength({ min: 2 }).withMessage("Name must be at least 2 characters"),
     body("email").isEmail().withMessage("Please enter a valid email"),
@@ -24,9 +27,9 @@ router.post(
       }
 
       const { name, email, subject, message } = req.body;
-
       // Create a new Contact document
       const newContact = new Contact({
+        user:req.user.id,
         name,
         email,
         subject,
@@ -35,6 +38,14 @@ router.post(
 
       // Save to database
       await newContact.save();
+
+      // Send email notification
+      await sendEmail({
+        name,
+        email,
+        subject,
+        message,
+      });
 
       res.status(201).json({
         success: true,
