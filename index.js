@@ -11,7 +11,8 @@ dbConnect();
 app.use(cors({
   origin:["https://sms-mern.vercel.app","https://student-management-system-admincls.vercel.app","http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  credentials: true
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
